@@ -1,0 +1,45 @@
+<app-header></app-header>
+<div style="margin-top: 50px;">
+    <input  style="width: 100%;" placeholder="Happy Browsing find Your Perfect Match Here |->" [(ngModel)]="searchKey" type="search" class="form-control">
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="lead fw-normal text-white-50 mb-0 fw-bolder">SOMETIMES ALL YOU NEED IS A NEW PERSPECTIVE</h1>
+                <h1 class="display-4 fw-bolder"> FRAME<i class="fa-brands fa-x-twitter text-danger"></i></h1>
+            </div>
+        </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+           
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div *ngFor="let product of allProducts | paginate: { itemsPerPage: 8, currentPage: p } | search : searchKey" class="col mb-5">
+                    <div class="card h-100 p-1 border border-white ">
+                        <!-- Product image-->
+                        <img height="200px" routerLink="/{{product.id}}/view" class="card-img-top" style="cursor: pointer;"
+                            [src]="product.image" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{product.title}}</h5>
+                                <!-- Product price-->
+                                $ {{product.price}}
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="d-flex justify-content-around">
+                            <button (click)="addToWishlist(product)" class="btn"><i class="fa-solid fa-heart text-danger"></i></button>
+                            <button (click)="addToCart(product)" class="btn "><i class="fa-solid fa-cart-plus "></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 text-center">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </section>
+</div>

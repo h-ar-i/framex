@@ -1,0 +1,12 @@
+img{
+    transition: ease;
+}
+
+.card:hover img{
+    scale: 1.02;
+    transition: ease-in-out;
+}
+
+.card:hover{
+    filter: drop-shadow(20px 7px 5px  rgba(0, 0, 0, 0.603));
+}
